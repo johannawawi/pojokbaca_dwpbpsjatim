@@ -11,9 +11,19 @@
 |
 */
 
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
+
+// ✅ Tambahkan setelah $app dibuat
+// Gunakan storage path agar writable on Vercel
+$app->useStoragePath(base_path('storage'));
+
+// (Opsional aman) Pindahkan bootstrap cache agar ke storage
+$app->instance('path.bootstrap', base_path('storage/framework'));
+
 
 /*
 |--------------------------------------------------------------------------
