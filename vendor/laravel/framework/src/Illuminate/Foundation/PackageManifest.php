@@ -172,14 +172,13 @@ class PackageManifest
      *
      * @throws \Exception
      */
+/**
+     * Disable manifest writing on Vercel (read-only filesystem)
+     */
     protected function write(array $manifest)
     {
-        if (! is_writable($dirname = dirname($this->manifestPath))) {
-            throw new Exception("The {$dirname} directory must be present and writable.");
-        }
-
-        $this->files->replace(
-            $this->manifestPath, '<?php return '.var_export($manifest, true).';'
-        );
+        // Simply store the manifest in memory to avoid writing to disk
+        $this->manifest = $manifest;
     }
+
 }
