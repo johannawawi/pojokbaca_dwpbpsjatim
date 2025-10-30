@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb2a0157f6607fd43023ada6397a7e597
+class ComposerStaticInit4361ce00021f6f51e42ba74e3b42cbf2
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -45,6 +45,7 @@ class ComposerStaticInitb2a0157f6607fd43023ada6397a7e597
         'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
+            'Tests\\' => 6,
             'Termwind\\' => 9,
         ),
         'S' => 
@@ -185,6 +186,10 @@ class ComposerStaticInitb2a0157f6607fd43023ada6397a7e597
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
             0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
+        ),
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Termwind\\' => 
         array (
@@ -4665,10 +4670,10 @@ class ComposerStaticInitb2a0157f6607fd43023ada6397a7e597
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb2a0157f6607fd43023ada6397a7e597::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb2a0157f6607fd43023ada6397a7e597::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr0 = ComposerStaticInitb2a0157f6607fd43023ada6397a7e597::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInitb2a0157f6607fd43023ada6397a7e597::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4361ce00021f6f51e42ba74e3b42cbf2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4361ce00021f6f51e42ba74e3b42cbf2::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr0 = ComposerStaticInit4361ce00021f6f51e42ba74e3b42cbf2::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInit4361ce00021f6f51e42ba74e3b42cbf2::$classMap;
 
         }, null, ClassLoader::class);
     }
