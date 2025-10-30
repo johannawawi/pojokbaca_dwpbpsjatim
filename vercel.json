@@ -7,7 +7,6 @@
       "maxDuration": 10
     }
   },
-  "buildCommand": "composer install --no-dev --optimize-autoloader && php artisan config:cache && php artisan route:cache",
   "routes": [
     {
       "src": "/images/(.*)",
