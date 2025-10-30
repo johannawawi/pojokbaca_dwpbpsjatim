@@ -10,7 +10,7 @@
 @endsection
 
 @section('judul')
-    <h1 class="text-primary">Tambah Kategori</h1>
+    <h1 class="text-primary">+ Tambah Kategori</h1>
 @endsection
 
 @section('content')

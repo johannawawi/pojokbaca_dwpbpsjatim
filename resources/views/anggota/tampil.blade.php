@@ -45,6 +45,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Nama Anggota</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Tanggal Bergabung</th>
                             <th scope="col">Tombol Aksi</th>
                         </tr>
                     </thead>
@@ -54,6 +55,7 @@
                                 <th scope="row">{{ $key }}</th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
+                                <td>{{ $item->created_at }}</td>
                                 <td>
 
                                     @if (Auth::user()->isAdmin == 1)

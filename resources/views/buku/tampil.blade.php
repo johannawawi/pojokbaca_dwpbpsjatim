@@ -14,7 +14,7 @@
 
 @section('content')
     @if (Auth::user()->isAdmin == 1)
-        <a href="/buku/create" class="btn btn-info mb-3">Tambah Buku</a>
+        <a href="/buku/create" class="btn btn-info mb-3">+ Tambah Buku</a>
     @endif
 
     <form class="navbar-search mb-3" action="/buku" method="GET">
@@ -39,11 +39,13 @@
                         @if ($item->gambar != null)
                             <img class="card-img-top" 
                                 style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:5px;"
-                                src="{{ asset('/images/' . $item->gambar) }}">
+                                src="{{ supabaseUrl('images/buku/' . $item->gambar) }}"
+">
                         @else
                             <img class="card-img-top"
                                 style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:5px;"
-                                src="{{ asset('/images/noImage.jpg') }}">
+                                src="{{ supabaseUrl('images/buku/noImage.jpg') }}"
+">
                         @endif
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div class="detai-buku">

@@ -16,10 +16,10 @@
         <div class="row">
             <div class="col-auto ml-5 mr-5 my-4">
                 @if ($profile->photoProfile != null)
-                    <img src="{{ asset('/images/photoProfile/' . $profile->photoProfile) }}"
+                    <img src="{{ supabaseUrl('images/photoProfile/' . $profile->photoProfile) }}"
                         style="width:150px;height:150px;border-radius:100px">
                 @else
-                    <img src="{{ asset('template/img/boy.png') }}" style="width:100px;height:100px;border-radius:50px">
+                    <img src="{{ supabaseUrl('images/photoProfile/noImage.jpg') }}" style="width:100px;height:100px;border-radius:50px">
                 @endif
             </div>
             <div class="col-auto mx-4">

@@ -11,11 +11,7 @@
       "status": 307,
       "headers": { "Location": "https://ybnaibqnkhalagibhqwp.supabase.co/storage/v1/object/public/assets/images/$1" }
     },
-    {
-      "src": "/img/(.*)",
-      "status": 307,
-      "headers": { "Location": "https://ybnaibqnkhalagibhqwp.supabase.co/storage/v1/object/public/assets/img/$1" }
-    },
+    
     {
       "src": "/(.*)",
       "dest": "/api/index.php"

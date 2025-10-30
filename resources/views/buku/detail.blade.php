@@ -16,9 +16,9 @@
     <div class="card mb-4">
         <div class="content m-4">
         @if($buku->gambar !=null)
-        <img class="img mb-3" src="{{asset('/images/'.$buku->gambar)}}"style="height:200px;width:200px">
+        <img class="img mb-3" src="{{{ supabaseUrl('images/buku/' . $item->gambar) }}"style="height:200px;width:200px">
         @else
-        <img class="img mb-3" src="{{asset('/images/noImage.jpg')}}"style="height:200px;width:200px">
+        <img class="img mb-3" src="{{ supabaseUrl('images/buku/noImage.jpg') }}"style="height:200px;width:200px">
         @endif
         <h5 class="pengarang">Pengarang : <a href="#" class="text-primary" style="text-decoration: none">{{ $buku->pengarang }}</a></h5>
         <h5 class="penerbit">Penerbit : <a href="#" class="text-primary" style="text-decoration: none">{{ $buku->penerbit }}</a></h5>

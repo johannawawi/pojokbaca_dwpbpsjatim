@@ -4,58 +4,60 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Services\SupabaseStorage;
+use Illuminate\Foundation\Auth\User;
 
-use File;
 class ProfileController extends Controller
 {
-    public function index(){
-        $iduser = Auth::id();
-        $profile = Profile::where('users_id',$iduser)->first();
-        return view('profile.tampil',['profile'=>$profile]);
+    private SupabaseStorage $storage;
+
+    public function __construct(SupabaseStorage $storage)
+    {
+        $this->storage = $storage;
     }
 
-    public function edit(){
-        $iduser = Auth::id();
-        $profile = Profile::where('users_id',$iduser)->first();
-        return view('profile.edit',['profile'=>$profile]);
+    public function index()
+    {
+        $iduser  = Auth::id();
+        $profile = Profile::where('users_id', $iduser)->first();
+        return view('profile.tampil', ['profile' => $profile]);
     }
 
-    public function update(request $request, $id){
+    public function edit()
+    {
+        $iduser  = Auth::id();
+        $profile = Profile::where('users_id', $iduser)->first();
+        return view('profile.edit', ['profile' => $profile]);
+    }
+
+    public function update(Request $request, $id)
+    {
         $request->validate([
-            'name'=> 'required',
-            'alamat'=> 'required',
-            'noTelp'=> 'required',
-            'photoProfile'=> 'nullable|mimes:jpg,jpeg,png|max:2048'
-        ],
-        [
-            'name.required'=>"Nama tidak boleh kosong",
-            'alamat.required'=>"Alamat tidak boleh kosong",
-            'noTelp.required'=>"Nomor Telepon tidak boleh kosong",
-            'photoProfile.mimes' =>"Foto Profile Harus Berupa jpg,jpeg,atau png",
-            'photoProfile.max' => "ukuran gambar tidak boleh lebih dari 2048 MB"
+            'name'         => 'required',
+            'alamat'       => 'required',
+            'noTelp'       => 'required',
+            'photoProfile' => 'nullable|mimes:jpg,jpeg,png|max:2048'
+        ], [
+            'name.required'   => "Nama tidak boleh kosong",
+            'alamat.required' => "Alamat tidak boleh kosong",
+            'noTelp.required' => "Nomor Telepon tidak boleh kosong",
         ]);
-        $iduser = Auth::id();
-        $profile = Profile::where('users_id',$iduser)->first();
-        $user = User::where('id',$iduser)->first();
 
-        if($request->has('photoProfile')){
-         $path='images/photoProifle';
+        $iduser  = Auth::id();
+        $profile = Profile::where('users_id', $iduser)->first();
+        $user    = User::where('id', $iduser)->first();
 
-         File::delete($path.$profile->photoProfile);
-
-         $namaGambar = time().'.'.$request->photoProfile->extension();
-
-         $request->photoProfile->move(public_path('images/photoProfile'),$namaGambar);
-
-         $profile->photoProfile =$namaGambar;
-
-         $profile->save();
+        if ($request->hasFile('photoProfile')) {
+            // hapus lama
+            $this->storage->deleteIfExists('images/photoProfile', $profile->photoProfile);
+            // upload baru => simpan nama file ke DB
+            $profile->photoProfile = $this->storage->uploadPublic('images/photoProfile', $request->file('photoProfile'));
+            $profile->save();
         }
-        $user->name = $request->name;
+
+        $user->name     = $request->name;
         $profile->alamat = $request->alamat;
         $profile->noTelp = $request->noTelp;
 
@@ -65,5 +67,4 @@ class ProfileController extends Controller
         Alert::success('Success', 'Berhasil Mengubah Profile');
         return redirect('/profile');
     }
-
 }

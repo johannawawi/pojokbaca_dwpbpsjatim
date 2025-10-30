@@ -9,9 +9,9 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 @if ($profile->photoProfile != null )
-                <img  class="img-profile rounded-circle" src="{{asset('/images/photoProfile/'.$profile->photoProfile)}}" style="max-width: 60px">
+                <img  class="img-profile rounded-circle" src="{{ supabaseUrl('images/photoProfile/' . $profile->photoProfile) }}" style="max-width: 60px">
                 @else
-                <img class="img-profile rounded-circle" src="{{ asset('template/img/boy.png') }}" style="max-width: 60px">
+                <img class="img-profile rounded-circle" src="{{ supabaseUrl('images/photoProfile/boy.jpg') }}" style="max-width: 60px">
                 @endif
                 <span class="ml-2 d-none d-lg-inline text-white small">{{Auth::user()->name}}</span>
               </a>
