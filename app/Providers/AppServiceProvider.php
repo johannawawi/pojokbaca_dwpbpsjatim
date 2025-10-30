@@ -14,8 +14,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if (env('VERCEL', false)) {
+            config([
+                'logging.default' => 'stderr',   // log ke console, bukan file
+                'cache.default' => 'array',      // cache tidak di file
+                'session.driver' => 'array',     // session tidak di file
+            ]);
+        }
     }
+
 
     /**
      * Bootstrap any application services.

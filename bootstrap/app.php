@@ -26,16 +26,6 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
-// Detect Vercel Environment
-if (env('VERCEL', false)) {
-    config([
-        'logging.default' => 'stderr',
-        'cache.default' => 'array',
-        'session.driver' => 'array',
-    ]);
-}
-
-
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Http\Kernel::class
