@@ -10,6 +10,12 @@
 | the IoC container for the system binding all of the various parts.
 |
 */
+// Disable cache and logs on Vercel
+if (env('VERCEL', false)) {
+    config(['app.providers' => []]);
+    config(['logging.default' => 'errorlog']); // log ke stderr bukan file
+}
+
 
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
