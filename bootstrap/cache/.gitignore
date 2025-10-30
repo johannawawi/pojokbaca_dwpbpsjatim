@@ -1,2 +1,4 @@
-*
-!.gitignore
+# Ignore cache EXCEPT required manifest
+/bootstrap/cache/*
+!/bootstrap/cache/packages.php
+!/bootstrap/cache/services.php
