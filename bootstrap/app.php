@@ -10,12 +10,6 @@
 | the IoC container for the system binding all of the various parts.
 |
 */
-// Disable cache and logs on Vercel
-if (env('VERCEL', false)) {
-    config(['app.providers' => []]);
-    config(['logging.default' => 'errorlog']); // log ke stderr bukan file
-}
-
 
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
@@ -31,6 +25,16 @@ $app = new Illuminate\Foundation\Application(
 | incoming requests to this application from both the web and CLI.
 |
 */
+
+// Detect Vercel Environment
+if (env('VERCEL', false)) {
+    config([
+        'logging.default' => 'stderr',
+        'cache.default' => 'array',
+        'session.driver' => 'array',
+    ]);
+}
+
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
